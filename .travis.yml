@@ -19,3 +19,16 @@ after_success:
   - docker push mingrammer/complex-nginx
   - docker push mingrammer/complex-server
   - docker push mingrammer/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: complex
+  env: Complex-env
+  bucket_name: elasticbeanstalk-ap-northeast-2-097793441495
+  bucket_path: complex
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
